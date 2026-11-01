@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "progestnow": {
+      "type": "http",
+      "url": "https://mcpv1.progestnow.com/mcp/progestnow/index.php"
+    }
+  }
+}

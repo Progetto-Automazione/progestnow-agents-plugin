@@ -1,0 +1,8 @@
+{
+  "name": "progestnow-agents",
+  "displayName": "ProgestNOW Agents",
+  "version": "0.2.0",
+  "description": "Interroga e opera sul gestionale ProgestNOW dalla chat: documenti commerciali, scadenzario, statistiche, TabellaBase, agenda e attività, con le procedure corrette per il tenant collegato.",
+  "author": { "name": "Progetto Automazione", "url": "https://www.progettoautomazione.com" },
+  "license": "MIT"
+}
