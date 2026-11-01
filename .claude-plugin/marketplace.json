@@ -1,0 +1,21 @@
+{
+  "name": "progestnow",
+  "owner": {
+    "name": "Progetto Automazione",
+    "url": "https://www.progettoautomazione.com"
+  },
+  "metadata": {
+    "description": "Plugin ufficiali ProgestNOW per Claude e Codex"
+  },
+  "plugins": [
+    {
+      "name": "progestnow-agents",
+      "source": "./",
+      "description": "Il gestionale ProgestNOW dalla chat: documenti, scadenzario, statistiche, TabellaBase, agenda e attività, con le procedure corrette per il tenant collegato.",
+      "version": "0.2.1",
+      "author": { "name": "Progetto Automazione" },
+      "homepage": "https://www.progestnow.com",
+      "license": "MIT"
+    }
+  ]
+}
