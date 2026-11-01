@@ -13,15 +13,20 @@ del tenant (nomi tabella, campi, decodifiche, trappole) arrivano dal server, non
 
 1. **Prima di qualsiasi altro tool ProgestNOW, chiama `pn_capabilities`.** Restituisce le
    famiglie di tool abilitate per questo utente e le eventuali skill specifiche del tenant.
-2. Le skill elencate nella sezione 3 sono già installate in questo plugin: per quelle aree
+2. **Subito dopo, chiama `pn_tenant_info`.** Restituisce `base_url` del tenant e i dati
+   dell'azienda collegata (ragione sociale, partita IVA, indirizzo). Tieni `base_url` per
+   tutta la conversazione: serve per i link (sezione 4). Usa i dati azienda quando
+   l'utente chiede "chi siamo", per intestazioni o per riconoscere l'azienda stessa tra
+   clienti e fornitori.
+3. Le skill elencate nella sezione 3 sono già installate in questo plugin: per quelle aree
    usa la copia installata e **non** caricarle anche con `pn_skill_get`, anche se
    compaiono in `pn_capabilities` con lo stesso nome.
-3. Se `pn_capabilities` elenca skill che non sono nella sezione 3 e pertinenti alla
+4. Se `pn_capabilities` elenca skill che non sono nella sezione 3 e pertinenti alla
    richiesta, caricale con `pn_skill_get` prima dei tool operativi; le risorse con
    `pn_skill_resource`. Le regole di una skill specifica del tenant prevalgono su quelle
    generiche della stessa area.
-4. Se `pn_capabilities` non risponde, prosegui con le sezioni 2 e 3.
-5. Per i tool `pn_tabellabase_*` con filtri o aggregazioni, prima della chiamata operativa
+5. Se `pn_capabilities` o `pn_tenant_info` non rispondono, prosegui con le sezioni 2 e 3.
+6. Per i tool `pn_tabellabase_*` con filtri o aggregazioni, prima della chiamata operativa
    chiama lo stesso tool con `_pn_info_request: true`: ricevi la documentazione per questo
    tenant senza eseguire nulla. Per gli altri tool chiama direttamente; se il server dice
    che il documento informativo non esiste, procedi senza ritentare.
@@ -81,8 +86,11 @@ sotto.
   non raggiunge gli URL ProgestNOW. Restringi i filtri o usa `pn_tabellabase_aggregate`;
   non chiedere mai tutte le pagine. Una risposta con `auto_export` o `_pn_truncated`
   contiene solo un'anteprima: non ricostruire i dati mancanti.
-- Link `urls.list`: includilo nella risposta solo se riporti esattamente i record di quei
-  filtri, copiandolo verbatim; non costruire né modificare URL ProgestNOW.
+- Link ProgestNOW (`urls.*`, link a schede e documenti): non costruirli né modificarli,
+  usa solo quelli restituiti dai tool. Se iniziano con `/` sono relativi: prefissali con
+  `base_url` di `pn_tenant_info`, senza aggiungere né togliere altro. Se `base_url` non è
+  disponibile, non mostrarli come link cliccabili: indica il percorso come testo.
+  Includi un link a una lista solo se riporti esattamente i record di quei filtri.
 - Codici e stati: usa il valore tecnico mostrato dal descriptor, non etichette business
   inventate.
 - Nessuna scrittura (creare, modificare, cancellare, registrare, inviare) senza richiesta
