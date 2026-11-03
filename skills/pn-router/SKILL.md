@@ -55,7 +55,6 @@ anche quella.
 | Fatturato, vendite, ricavi per periodo/cliente/agente/articolo | `pn-fatturato-documenti` |
 | Pagina Statistiche, `pn_statistiche_*`, top clienti/articoli, confronto anno precedente, margini | `pn-statistiche` |
 | Incassi di fatture attive, residui, insoluti, crediti aperti, registrare un incasso | `pn-incassi` |
-| Effetti RIBA/RID: distinte, file bancario, insoluti | `effetti-ciclo-vita` |
 | Offerte, pipeline, preventivi, opportunità, tasso di conversione | `pn-offerte-crm` |
 | Ordini clienti in lettura: portafoglio, backlog, inevasi, ritardi | `pn-ordini-clienti` |
 | Ordini a fornitore in lettura: merce in arrivo, residuo da ricevere, puntualità | `pn-ordini-fornitori` |

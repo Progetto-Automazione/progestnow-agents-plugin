@@ -9,7 +9,6 @@ description: >-
 metadata:
   scope: core
   requires_skill: pn-tabellabase-query
-  related_skills: effetti-ciclo-vita
   auto_activate_on_tools: [pn_document_receipts_status, pn_document_receipt_register]
 ---
 
@@ -102,7 +101,7 @@ Regola operativa: **`importo_residuo < 0` non significa "credito verso il client
 | Movimenti che compongono l'incassato di una fattura | `qryfatture_incassi` filtrata per `rifpa` + `csott` (R4) |
 | Saldo contabile vero di una partita, insoluti, storni | `pn_coge_partitario_search` su `arcmovc.rifpa` + `arcmovc.csott` (R5) |
 | Incassato in un periodo (cassa) | `qryfatture_incassi` per `data` **solo sottoconti clienti** (R6), con le avvertenze di §3 |
-| Scadenze future / scaduto per data scadenza | non e questa vista: scadenziario o `pn_coge_scadenzario` se disponibili; RIBA/RID: skill `effetti-ciclo-vita` |
+| Scadenze future / scaduto per data scadenza | non e questa vista: scadenziario o `pn_coge_scadenzario` se disponibili; RIBA/RID: le TabellaBase degli effetti con `pn-tabellabase-query` |
 | Registrare un incasso | `pn_document_receipt_register` (§7) |
 
 Per filtrare `qryfatture_situazione_incassi`:
@@ -190,7 +189,7 @@ Modalita `bulk` (un bonifico che paga piu fatture):
 - Tutte le fatture devono essere dello stesso cliente o comunque autorizzate dall'utente: la registrazione e unica, una riga cliente per fattura.
 - La risposta contiene `importi_per_fattura`: riportala e verifica ogni fattura rileggendo lo stato.
 
-Fuori perimetro di questo tool (dichiaralo come `TOOLING_GAP` se richiesto): registrare insoluti, stornare o cancellare un incasso, incassi in valuta, abbuoni/arrotondamenti, incassi non legati a una fattura. RIBA/RID (distinte, trasferimento, insoluti): skill `effetti-ciclo-vita` e tool `pn_effetti_*`.
+Fuori perimetro di questo tool (dichiaralo come `TOOLING_GAP` se richiesto): registrare insoluti, stornare o cancellare un incasso, incassi in valuta, abbuoni/arrotondamenti, incassi non legati a una fattura. RIBA/RID (distinte, trasferimento, insoluti): qui si possono solo leggere, dalle TabellaBase degli effetti con `pn-tabellabase-query`; le operazioni sugli effetti si fanno in ProgestNOW.
 
 ## 8. Confini
 

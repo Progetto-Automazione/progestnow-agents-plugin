@@ -132,7 +132,7 @@ Leggi `datareg`, `nmovc`, `causale`, `tipocau1`, `descr`, `impdare`, `impavere`.
 | Incassato = 2 x totale, residuo = -totale | insoluto (DARE) non sottratto dalla vista, poi nuovo incasso | `pn_document_receipts_status` o R5 |
 | Incassato molto superiore al totale | partita condivisa da piu fatture o incasso cumulativo | R5, conta le righe di fattura |
 | Fattura `nessun_incasso` che il cliente dice di aver pagato | incasso registrato senza `rifpa` o su altro `rifpa` | partitario del cliente nel periodo, cerca l'importo |
-| `stato_incasso = incassato` ma la banca non ha accreditato | RIBA presentata (sbf), non ancora maturata o insoluta | spiegalo; stato effetti con skill `effetti-ciclo-vita` |
+| `stato_incasso = incassato` ma la banca non ha accreditato | RIBA presentata (sbf), non ancora maturata o insoluta | spiegalo; stato effetti con le TabellaBase degli effetti con `pn-tabellabase-query` |
 | 0 righe in `qryfatture_incassi` per una fattura incassata | filtrato solo per `rifpa` con csott sbagliato, o `rifpa` con anno a 4 cifre | usa `rifpa_standard` + `rifpa_idcliente` |
 | Totale incassi del mese enorme | non filtrati i sottoconti clienti | R6 con `arcsott.tipos = 'C'` |
 | `Esercizio contabile NON definito per la data` | data incasso fuori esercizi | chiedi la data corretta o segnala all'amministrazione |
