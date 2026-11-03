@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "progestnow-agents",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Interroga e opera sul gestionale ProgestNOW dalla chat: documenti commerciali, scadenzario, statistiche, TabellaBase, agenda e attività, con le procedure corrette per il tenant collegato.",
   "author": {
     "name": "Progetto Automazione",
@@ -14,13 +14,82 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "ProgestNOW Agents",
-        "shortDescription": "Il gestionale ProgestNOW dalla chat",
-        "longDescription": "Collega Codex e ChatGPT al tuo tenant ProgestNOW: documenti commerciali, scadenzario, statistiche, TabellaBase, agenda e attività, con le procedure corrette per il tenant collegato.",
+        "displayName": "ProgestNOW",
+        "shortDescription": "ERP data and actions in chat",
+        "longDescription": "Use your ProgestNOW ERP from ChatGPT. Ask questions in plain language and get answers from your live business data: revenue by customer, open orders, overdue invoices, payments and receipts, sales statistics, commissions, agenda and tasks. Turn results into tables and dashboards, prepare for a customer meeting with a one-page summary, or create quotes, orders and tasks directly in the ERP. Every action respects the user's ProgestNOW permissions and data visibility rules; nothing is created or changed without the user's confirmation, and every operation is logged. Requires an active ProgestNOW subscription with the AI integration enabled for your company.",
         "developerName": "Progetto Automazione",
         "category": "Productivity",
-        "capabilities": ["Read", "Write"],
-        "websiteURL": "https://www.progestnow.com"
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://progestnow.com/mcp/",
+        "supportURL": "https://progettoautomazione.com/la-nostra-assistenza.html",
+        "privacyPolicyURL": "https://progestnow.com/mcp/privacy/",
+        "termsOfServiceURL": "https://progestnow.com/mcp/terms/",
+        "defaultPrompt": [
+          "Which customer orders are still open?",
+          "How much have we invoiced this year compared to last year?",
+          "Show me the latest invoice."
+        ],
+        "brandColor": "#2A7AC8",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Open customer orders",
+              "prompt": "Which customer orders are still open and not yet fulfilled?",
+              "tools_triggered": "pn_documents_search, pn_document_evadable_rows",
+              "expected_behavior": "Lists at least order 4 of 2026-07-13 for CLIENTE NUMERO 2 and order 3 of 2026-04-10 for CLIENTE NUMERO 14, both with nothing fulfilled; order 6 of 2026-11-03 for CLIENTE NUMERO 5 is partially fulfilled."
+            },
+            {
+              "description": "Revenue compared with last year",
+              "prompt": "How much revenue have we invoiced this year compared to last year?",
+              "tools_triggered": "pn_statistiche_query",
+              "expected_behavior": "About EUR 23,793 for 2026 year to date (invoices minus credit notes) and about EUR 55,265 for 2025, stating that 2026 is year to date."
+            },
+            {
+              "description": "Read a document",
+              "prompt": "Show me invoice number 8 of 2026.",
+              "tools_triggered": "pn_documents_search, pn_document_read",
+              "expected_behavior": "Invoice 8 of 2026-10-20 to CLIENTE NUMERO 10, total EUR 992.00, with its rows."
+            },
+            {
+              "description": "Find an item from a description",
+              "prompt": "Find the Rolsfer viscosity 1 oil in the product catalog.",
+              "tools_triggered": "pn_articoli_ricerca_catalogo",
+              "expected_behavior": "Item OLIO01ROL1SC, ROLSFER VISCOSITA 1 SECCHIELLO."
+            },
+            {
+              "description": "Create a task with confirmation",
+              "prompt": "Create a task on invoice 8 of 2026: call the customer back, due in one week.",
+              "tools_triggered": "pn_tabellabase_new",
+              "expected_behavior": "Summarizes the task and asks for confirmation; after confirmation creates a task linked to invoice 8/2026 and returns its number."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Email sending not available",
+              "prompt": "Email invoice 8 of 2026 to the customer."
+            },
+            {
+              "description": "Bulk deletion",
+              "prompt": "Delete all invoices from 2025."
+            },
+            {
+              "description": "Another company's data",
+              "prompt": "Show me the revenue of another company that uses ProgestNOW."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "Initial release: read and update ProgestNOW ERP data (documents, orders, payments, statistics, commissions, agenda, tasks) with user confirmation for every change."
       }
     }
   }

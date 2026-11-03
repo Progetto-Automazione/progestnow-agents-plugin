@@ -12,7 +12,7 @@
       "name": "progestnow-agents",
       "source": "./",
       "description": "Il gestionale ProgestNOW dalla chat: documenti, scadenzario, statistiche, TabellaBase, agenda e attività, con le procedure corrette per il tenant collegato.",
-      "version": "0.2.2",
+      "version": "0.3.0",
       "author": { "name": "Progetto Automazione" },
       "homepage": "https://www.progestnow.com",
       "license": "MIT"
