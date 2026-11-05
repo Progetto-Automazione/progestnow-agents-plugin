@@ -16,7 +16,7 @@
       "interface": {
         "displayName": "ProgestNOW",
         "shortDescription": "ERP data and actions in chat",
-        "longDescription": "Use your ProgestNOW ERP from ChatGPT. Ask questions in plain language and get answers from your live business data: revenue by customer, open orders, overdue invoices, payments and receipts, sales statistics, commissions, agenda and tasks. Turn results into tables and dashboards, prepare for a customer meeting with a one-page summary, or create quotes, orders and tasks directly in the ERP. Every action respects the user's ProgestNOW permissions and data visibility rules; nothing is created or changed without the user's confirmation, and every operation is logged. Requires an active ProgestNOW subscription with the AI integration enabled for your company.",
+        "longDescription": "Use your ProgestNOW ERP from ChatGPT. Ask questions in plain language and get answers from your live business data: revenue by customer, open orders, overdue invoices, payments and receipts, sales statistics, commissions, agenda and tasks. Turn results into tables and dashboards, prepare for a customer meeting with a one-page summary, or create quotes, orders and tasks directly in the ERP. Every action respects the user's ProgestNOW permissions and data visibility rules; nothing is created or changed without the user's confirmation, and every operation is logged. Requires a ProgestNOW account with the AI integration enabled by your company administrator.",
         "developerName": "Progetto Automazione",
         "category": "Productivity",
         "capabilities": [
